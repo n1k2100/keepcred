@@ -1,6 +1,7 @@
-import { App as AntdApp, ConfigProvider as AntdConfigProvider } from 'antd'
+import { useEffect } from 'react'
 import { useSignals, useSignal } from '@preact/signals-react/runtime'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { App as AntdApp, ConfigProvider as AntdConfigProvider } from 'antd'
 
 import './styles/sass/index.sass'
 import { tRpcClient, tRpcClientReact } from './trpc'
@@ -14,6 +15,17 @@ export const App = () => {
 
   const client = useSignal(tRpcClient)
   const clientTanstack = useSignal(new QueryClient())
+
+  useEffect(() => {
+    const loader = document.getElementById('loading-screen')
+    if (loader) {
+      loader.classList.add('fade-out')
+
+      setTimeout(() => {
+        loader.remove()
+      }, 500)
+    }
+  }, [])
 
   return (
     <>
