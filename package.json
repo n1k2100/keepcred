@@ -17,25 +17,26 @@
     "url": "git+https://github.com/keepcred/keepcred.git"
   },
   "scripts": {
-    "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
-    "update:deps": "npx npm-check-updates -u",
-    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,cjs,cts,mts}\"",
-    "prettier:format": "prettier --write \"**/*.{js,jsx,ts,tsx,cjs,cts,cts,mts}\"",
-    "lint": "eslint --cache .",
-    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
-    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
-    "typecheck": "npm run typecheck:node && npm run typecheck:web",
-    "start": "electron-vite preview",
     "dev": "electron-vite dev",
+    "preview": "electron-vite preview",
+    "update:deps": "npx npm-check-updates -u",
+    "format": "prettier --check \"**/*.{js,jsx,ts,tsx,cjs,cts,mts}\"",
+    "format:check": "prettier --write \"**/*.{js,jsx,ts,tsx,cjs,cts,cts,mts}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "build": "npm run typecheck && electron-vite build",
-    "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux",
-    "publish": "electron-builder --publish always",
+    "build:storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "publish": "electron-builder --publish always",
+    "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
+    "postinstall": "electron-builder install-app-deps"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
