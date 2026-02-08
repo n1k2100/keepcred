@@ -5,7 +5,6 @@ import type { Config } from 'prettier'
  */
 const config: Config = {
   semi: false,
-  endOfLine: 'lf',
   printWidth: 130,
   quoteProps: 'consistent',
   singleQuote: true,
